@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frontend</title>
+</head>
+<body>
+    <h1>Welcome to the Frontend</h1>
+    <p>This is a simple static page served by Nginx.</p>
+    <p>Test API calls below:</p>
+    <button id="hello-btn">Get Hello</button>
+    <button id="data-btn">Send Data</button>
+
+    <script>
+        document.getElementById('hello-btn').addEventListener('click', async () => {
+            const response = await fetch('/api/hello');
+            const data = await response.json();
+            alert(JSON.stringify(data));
+        });
+
+        document.getElementById('data-btn').addEventListener('click', async () => {
+            const response = await fetch('/api/data', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ name: 'Frontend User' }),
+            });
+            const data = await response.json();
+            alert(JSON.stringify(data));
+        });
+    </script>
+</body>
+</html>
